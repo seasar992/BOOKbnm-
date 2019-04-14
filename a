@@ -1,0 +1,19 @@
+from PyQt5 import QtCore
+import pyqtgraph as pg
+
+x = ['a', 'b', 'c', 'd', 'e', 'f']
+y = [1, 2, 3, 4, 5, 6]
+xdict = dict(enumerate(x))
+
+win = pg.GraphicsWindow()
+stringaxis = pg.AxisItem(orientation='bottom')
+stringaxis.setTicks([xdict.items()])
+plot = win.addPlot(axisItems={'bottom': stringaxis})
+curve = plot.plot(list(xdict.keys()), y)
+
+if __name__ == '__main__':
+    import sys
+
+    if sys.flags.interactive != 1 or not hasattr(QtCore, 'PYQT_VERSION'):
+        pg.QtGui.QApplication.exec_()
+ 
